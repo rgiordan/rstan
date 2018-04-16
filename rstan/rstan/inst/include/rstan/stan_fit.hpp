@@ -1035,6 +1035,10 @@ public:
     std::vector<double> gradient;
     double lp;
     if (Rcpp::as<bool>(jacobian_adjust_transform))
+      // Right now this doesn't work because the StanHeaders package is reading
+      // from its own install of the Stan headers in
+      // /usr/local/lib/R/site-library/StanHeaders/include/src/stan/model
+      // rather than from my own github repo.
       lp = stan::model::log_prob_hessian<true,true>(
         model_, par_r, par_i, gradient, &rstan::io::rcout);
     else
