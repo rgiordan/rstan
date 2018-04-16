@@ -7,6 +7,8 @@ RCPP_MODULE(stan_fit4%model_name%_mod){
     // .constructor<Rcpp::List>()
     .constructor<SEXP, SEXP, SEXP>()
     // .constructor<SEXP, SEXP>()
+    .method("high_five",
+            &rstan::stan_fit<%model_name%_namespace::%model_name%, boost::random::ecuyer1988>::high_five)
     .method("call_sampler",
             &rstan::stan_fit<%model_name%_namespace::%model_name%, boost::random::ecuyer1988>::call_sampler)
     .method("param_names",
